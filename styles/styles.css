@@ -1,5 +1,5 @@
 html {
-    background-color: #555;
+    background-color: #164e63;
 }
 body {
     display: flex;
@@ -15,6 +15,8 @@ body {
     margin-bottom: 20px;
 }
 #container {
+    width: 25rem;
+    height: 25rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -23,12 +25,6 @@ body {
     border: solid 2px #fff;
 
 }
-squares {
-    width: 2rem;
-    height: 2rem;
-    margin: 0.15rem;
-    background-color: #fff;
-}
 #reset {
     margin-top: 20px; 
     background-color: #000; 
@@ -36,4 +32,29 @@ squares {
     border-radius: 5px;
     width: 6rem;
     height: 2rem;
+}
+
+#userInputSection {
+    width: 24rem;
+    height: 3rem;
+    padding: 10px;
+    background-color: #bfdbfe;
+    border: 1px solid #bfdbfe;
+    margin: 10px;
+    border-radius: 5px;
+}
+#inputSection {
+    display: flex;
+
+}
+#label {
+    margin-right: 5px;
+    font-size: 1rem;
+}
+#input {
+    width: 3rem;
+    margin-right: 5px;
+}
+#enterBtn {
+    margin-right: 5px;
 }

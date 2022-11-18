@@ -1,50 +1,99 @@
 var body = document.querySelector('body');
 var container = document.createElement('div');
+
 container.setAttribute('id',  'container');
 body.appendChild(container);
-container.style = 'width: 25rem; height: 25rem;';
 
-// start of function for Grid 
-
-function createDivs(num) {
-for (let i = 0; i < num; i++) {
-
-  var numberOfSides = 100/Math.sqrt(num);
-    
+const createSquares = (num) => {
+  
+  for (let i = 0; i < (num * num); i++) { 
     var div = document.createElement('div');
     div.setAttribute('class', 'squares');
     container.appendChild(div);
-    div.style = `width: ${numberOfSides}% ;height: ${numberOfSides}% ; background-color: #fff; outline: 1px solid green`;
-       
+    div.style = `width: ${100/num}% ;height: ${100/num}% ; background-color: #fff; outline: 1px solid #555`;    
   };
+} 
+
+
+window.onload = createSquares(16);
+
+const section = document.createElement('div');
+const input = document.createElement('input');
+const enterBtn = document.createElement('button');
+const resetBtn = document.createElement('button');
+
+const userInput = () => {
   
+  section.setAttribute('id', 'userInputSection')
+  body.appendChild(section);
+
+  const inputSection = document.createElement('div');
+  inputSection.setAttribute('id', 'inputSection')
+  section.appendChild(inputSection);
+
+  const inputLabel = document.createElement('label');
+  inputLabel.setAttribute('id', 'label');
+  inputLabel.textContent = 'Number of sides:';
+  inputSection.appendChild(inputLabel);
+
+  input.setAttribute('id', 'input');
+  inputSection.appendChild(input);
+
+  enterBtn.setAttribute('id', 'enterBtn')
+  enterBtn.textContent = 'Enter';
+  enterBtn.setAttribute('type', 'submit')
+  inputSection.appendChild(enterBtn);
+  
+  resetBtn.setAttribute('id', 'resetBtn')
+  resetBtn.textContent = 'Reset';
+  inputSection.appendChild(resetBtn);
+
+  const changeSquares = () => {
+    const num = input.value;
+    while (container.firstChild) {
+      container.removeChild(container.firstChild)
+    }
+    if (num <= 100) {
+      createSquares(num)
+    } else {
+      alert('Number should be < 100');
+      createSquares(16)
+    }
+  }
+  
+  enterBtn.addEventListener('click', changeSquares)
 }
-//end of function for drawing grid
-window.onload = createDivs(256);
+userInput()
 
-// background color change on click
-var colorChanges = document.querySelectorAll('.squares');
+const changeSquareColors = () => {
 
-colorChanges.forEach((colorChange) => {
-    colorChange.addEventListener('click', () => {
-        colorChange.style.background = '#000';
+  const squares = document.querySelectorAll('.squares');
+  squares.forEach((square) => {
+    square.addEventListener('mouseover', () => {
+      
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+      square.style.background = getRandomColor();
     })
-    colorChange.addEventListener('dblclick', () => {
-        colorChange.style.background = '#fff'
-    })
-});
+  })
+}
 
-//reset button start
-var reset = document.createElement('button');
-reset.textContent = 'RESET';
-body.appendChild(reset);
-reset.setAttribute('id', 'reset');
+changeSquareColors()
 
-reset.addEventListener('click', () => {
-  var resetGrid = document.querySelectorAll('.squares');
-    
-    resetGrid.forEach((clearGrid) => {
-      clearGrid.style.background = '#fff';
+enterBtn.addEventListener('click', changeSquareColors)
+
+const resetSquares = () => {
+    const squares = document.querySelectorAll('.squares');
+    squares.forEach((square) => {
+      square.style.background = '#fff';
     })
-});
-//reset button end
+
+};
+
+resetBtn.addEventListener('click', resetSquares)
