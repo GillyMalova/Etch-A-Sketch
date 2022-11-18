@@ -33,15 +33,15 @@ const userInput = () => {
 
   const inputLabel = document.createElement('label');
   inputLabel.setAttribute('id', 'label');
-  inputLabel.textContent = 'Number of sides:';
+  inputLabel.textContent = 'Squares Per side:';
   inputSection.appendChild(inputLabel);
 
   input.setAttribute('id', 'input');
   inputSection.appendChild(input);
 
-  enterBtn.setAttribute('id', 'enterBtn')
+  enterBtn.setAttribute('id', 'enterBtn');
   enterBtn.textContent = 'Enter';
-  enterBtn.setAttribute('type', 'submit')
+  enterBtn.setAttribute('type', 'submit');
   inputSection.appendChild(enterBtn);
   
   resetBtn.setAttribute('id', 'resetBtn')
